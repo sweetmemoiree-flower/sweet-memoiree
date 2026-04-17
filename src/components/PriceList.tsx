@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, Variants } from 'motion/react';
 import { categories, products } from '../data/products';
-import { ChevronRight, Flower2, Gift, Camera, Package, Sparkles } from 'lucide-react';
+import { ChevronRight, Flower2, Gift, Camera, Package, Sparkles, Heart, Palette, Info } from 'lucide-react';
 
 export default function PriceList() {
-  const headerVariants = {
+  const headerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -12,7 +12,7 @@ export default function PriceList() {
     },
   };
 
-  const headerItemVariants = {
+  const headerItemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -21,7 +21,7 @@ export default function PriceList() {
     },
   };
 
-  const gridVariants = {
+  const gridVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -29,7 +29,7 @@ export default function PriceList() {
     },
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -125,7 +125,7 @@ export default function PriceList() {
                 <div className="aspect-[4/5] overflow-hidden relative rounded-xl">
                   <img 
                     src={product.image} 
-                    alt={product.name}
+                    alt={`${product.name} - ${product.details}`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-text/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
@@ -178,7 +178,7 @@ export default function PriceList() {
                 >
                   <img 
                     src={selectedProduct.image} 
-                    alt={selectedProduct.name}
+                    alt={`${selectedProduct.name} - ${selectedProduct.details}`}
                     className={`w-full h-full object-cover transition-transform duration-500 ${isZoomed ? 'scale-150' : 'scale-100 group-hover:scale-105'}`}
                     style={{ transformOrigin: 'center center' }}
                   />
@@ -197,6 +197,23 @@ export default function PriceList() {
                 </div>
                 
                 <div className="md:w-1/2 p-8 md:p-12 overflow-y-auto">
+                  <script type="application/ld+json">
+                    {JSON.stringify({
+                      "@context": "https://schema.org/",
+                      "@type": "Product",
+                      "name": selectedProduct.name,
+                      "image": [`https://sweet-memoiree.com${selectedProduct.image}`],
+                      "description": selectedProduct.details,
+                      "brand": { "@type": "Brand", "name": "Sweet Memoiree" },
+                      "offers": {
+                        "@type": "Offer",
+                        "priceCurrency": "IDR",
+                        "price": selectedProduct.options[0].price.replace('k', '000'),
+                        "availability": "https://schema.org/InStock",
+                        "url": "https://sweet-memoiree.com#price-list"
+                      }
+                    })}
+                  </script>
                   <h3 className="font-serif text-3xl text-text mb-2">{selectedProduct.name}</h3>
                   <p className="text-text-muted font-medium mb-6">{selectedProduct.size}</p>
                   
@@ -229,12 +246,45 @@ export default function PriceList() {
                     </div>
                     
                     <div>
-                      <h4 className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold">Details</h4>
+                      <h4 className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold">Product Summary</h4>
                       <p className="text-text-muted text-sm leading-relaxed">{selectedProduct.details}</p>
                     </div>
 
+                    {(selectedProduct as any).flowers && (
+                      <div className="bg-bg/50 p-4 rounded-2xl border border-[#eee]">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Flower2 size={16} className="text-accent" />
+                          <h4 className="text-[11px] uppercase tracking-[2px] text-text font-bold">Flower Components</h4>
+                        </div>
+                        <p className="text-text-muted text-sm leading-relaxed">{(selectedProduct as any).flowers}</p>
+                      </div>
+                    )}
+
+                    {(selectedProduct as any).palettes && (
+                      <div className="bg-bg/50 p-4 rounded-2xl border border-[#eee]">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Palette size={16} className="text-accent" />
+                          <h4 className="text-[11px] uppercase tracking-[2px] text-text font-bold">Color Palettes</h4>
+                        </div>
+                        <p className="text-text-muted text-sm leading-relaxed">{(selectedProduct as any).palettes}</p>
+                      </div>
+                    )}
+
+                    {(selectedProduct as any).care && (
+                      <div className="bg-bg/50 p-4 rounded-2xl border border-[#eee]">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Heart size={16} className="text-accent" />
+                          <h4 className="text-[11px] uppercase tracking-[2px] text-text font-bold">Care Instructions</h4>
+                        </div>
+                        <p className="text-text-muted text-sm leading-relaxed">{(selectedProduct as any).care}</p>
+                      </div>
+                    )}
+
                     <div>
-                      <h4 className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold">Customization Notes</h4>
+                      <h4 className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold flex items-center gap-2">
+                        <Info size={14} />
+                        Customization Notes
+                      </h4>
                       <textarea
                         value={customization}
                         onChange={(e) => setCustomization(e.target.value)}
@@ -250,7 +300,7 @@ export default function PriceList() {
                     rel="noopener noreferrer"
                     className="block w-full bg-accent hover:bg-accent/90 text-white text-center px-6 py-4 rounded-[40px] transition-colors font-semibold text-[15px]"
                   >
-                    Order via WhatsApp
+                    Ask on WhatsApp
                   </a>
                 </div>
               </motion.div>

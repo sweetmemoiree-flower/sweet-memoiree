@@ -5,7 +5,6 @@
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import InstagramFeed from './components/InstagramFeed';
 import PriceList from './components/PriceList';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
@@ -17,7 +16,6 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <InstagramFeed />
         <PriceList />
         <Gallery />
         <Testimonials />

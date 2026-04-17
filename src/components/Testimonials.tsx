@@ -1,8 +1,8 @@
-import { motion } from 'motion/react';
+import { motion, Variants } from 'motion/react';
 import { Star } from 'lucide-react';
 
 export default function Testimonials() {
-  const headerVariants = {
+  const headerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -10,7 +10,7 @@ export default function Testimonials() {
     },
   };
 
-  const headerItemVariants = {
+  const headerItemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -19,7 +19,7 @@ export default function Testimonials() {
     },
   };
 
-  const gridVariants = {
+  const gridVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -27,7 +27,7 @@ export default function Testimonials() {
     },
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,

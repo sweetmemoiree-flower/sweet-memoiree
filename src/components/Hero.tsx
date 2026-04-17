@@ -1,7 +1,7 @@
-import { motion } from 'motion/react';
+import { motion, Variants } from 'motion/react';
 
 export default function Hero() {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -12,7 +12,7 @@ export default function Hero() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -27,7 +27,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&q=80&w=2000"
-          alt="Beautiful floral arrangement"
+          alt="Artisanal Peach and Cream Floral Arrangement by Sweet Memoiree"
           className="w-full h-full object-cover opacity-60"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-bg/40 via-bg/60 to-bg"></div>
@@ -54,7 +54,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="bg-accent text-white px-8 py-[18px] rounded-[40px] font-semibold text-[15px] hover:bg-accent/90 transition-colors inline-flex items-center justify-center w-full sm:w-auto"
             >
-              Book a Consultation on WhatsApp
+              Ask on WhatsApp
             </a>
             <a
               href="#price-list"

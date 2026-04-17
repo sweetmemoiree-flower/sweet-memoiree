@@ -42,7 +42,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="bg-accent text-white px-8 py-[18px] rounded-[40px] font-semibold text-[15px] hover:bg-accent/90 transition-colors"
             >
-              Book Now
+              Ask on WhatsApp
             </a>
           </div>
 
@@ -78,7 +78,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="block px-3 py-2 text-accent font-semibold text-[13px] uppercase tracking-[1px]"
             >
-              Book Now
+              Ask on WhatsApp
             </a>
           </div>
         </div>
