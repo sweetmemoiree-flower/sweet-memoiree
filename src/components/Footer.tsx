@@ -11,6 +11,11 @@ export default function Footer() {
             <p className="text-text-muted max-w-xs leading-relaxed">
               Crafting beautiful memories with premium floral arrangements for every special occasion.
             </p>
+            <p className="text-xs text-accent font-medium pt-2">
+              <a href="https://www.instagram.com/sweet.memoiree/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                Visit our Instagram @sweet.memoiree for more catalog details & latest collections.
+              </a>
+            </p>
           </div>
 
           <div className="space-y-4">

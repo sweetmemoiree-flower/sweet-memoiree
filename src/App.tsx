@@ -5,9 +5,12 @@
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import About from './components/About';
 import PriceList from './components/PriceList';
+import Process from './components/Process';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
+import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -16,9 +19,12 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <About />
         <PriceList />
+        <Process />
         <Gallery />
         <Testimonials />
+        <FAQ />
       </main>
       <Footer />
     </div>

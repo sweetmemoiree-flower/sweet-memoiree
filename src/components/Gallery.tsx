@@ -132,14 +132,28 @@ export default function Gallery() {
         </motion.div>
         
         <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-16 text-center space-y-8"
         >
           <p className="text-text-muted italic flex items-center justify-center gap-2">
             Each arrangement is uniquely crafted for your special moment.
           </p>
+
+          <div className="pt-4">
+            <a 
+              href="https://www.instagram.com/sweet.memoiree/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-card-bg border border-accent/20 px-8 py-4 rounded-[40px] text-text font-semibold hover:bg-accent hover:text-white transition-all duration-300 group"
+            >
+              <span className="bg-accent/10 p-2 rounded-full group-hover:bg-white/20 transition-colors text-accent group-hover:text-white">
+                <Maximize2 size={18} className="rotate-45" />
+              </span>
+              <span>Visit our Instagram for more catalogs</span>
+            </a>
+          </div>
         </motion.div>
       </div>
 
