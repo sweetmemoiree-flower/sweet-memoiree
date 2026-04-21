@@ -1,30 +1,22 @@
 import { motion, Variants } from 'motion/react';
 import { Search, MessageSquare, CreditCard, Gift } from 'lucide-react';
-
-const steps = [
-  {
-    icon: <Search className="w-6 h-6" />,
-    title: 'Choose Style',
-    description: 'Explore our curated catalog and select the arrangement that speaks to you.'
-  },
-  {
-    icon: <MessageSquare className="w-6 h-6" />,
-    title: 'Consult Now',
-    description: 'Connect via WhatsApp to discuss customization, message cards, and availability.'
-  },
-  {
-    icon: <CreditCard className="w-6 h-6" />,
-    title: 'Secure Order',
-    description: 'Confirm your details and complete payment to secure your hand-crafted piece.'
-  },
-  {
-    icon: <Gift className="w-6 h-6" />,
-    title: 'Hand-Crafted',
-    description: 'Our florists carefully assemble your arrangement for local delivery or pickup.'
-  }
-];
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Process() {
+  const { t } = useLanguage();
+
+  const stepIcons = [
+    <Search className="w-6 h-6" />,
+    <MessageSquare className="w-6 h-6" />,
+    <CreditCard className="w-6 h-6" />,
+    <Gift className="w-6 h-6" />
+  ];
+
+  const translatedSteps = t('process.steps').map((step: any, idx: number) => ({
+    ...step,
+    icon: stepIcons[idx]
+  }));
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
@@ -45,7 +37,7 @@ export default function Process() {
             viewport={{ once: true }}
             className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold block"
           >
-            Seamless Experience
+            {t('process.badge')}
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 10 }}
@@ -54,7 +46,7 @@ export default function Process() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-serif text-text mb-4"
           >
-            How to Order
+            {t('process.title')}
           </motion.h2>
         </div>
 
@@ -65,7 +57,7 @@ export default function Process() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-4 gap-8 relative"
         >
-          {steps.map((step, idx) => (
+          {translatedSteps.map((step: any, idx: number) => (
             <motion.div 
               key={idx} 
               variants={itemVariants}
@@ -73,7 +65,7 @@ export default function Process() {
             >
               <div className="w-16 h-16 rounded-full bg-white border border-accent/20 flex items-center justify-center text-accent mb-6 group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-sm relative">
                 {step.icon}
-                {idx < steps.length - 1 && (
+                {idx < translatedSteps.length - 1 && (
                   <div className="hidden md:block absolute top-1/2 left-full w-full h-[1px] bg-accent/20 -translate-y-1/2 ml-4 px-2" />
                 )}
               </div>

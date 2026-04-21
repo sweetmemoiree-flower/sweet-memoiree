@@ -1,6 +1,9 @@
 import { Instagram, MapPin, Phone } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-accent-soft text-text py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,17 +12,17 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="font-serif text-2xl font-semibold mb-6 italic text-accent">Sweet Memoiree</h3>
             <p className="text-text-muted max-w-xs leading-relaxed">
-              Crafting beautiful memories with premium floral arrangements for every special occasion.
+              {t('footer.description')}
             </p>
             <p className="text-xs text-accent font-medium pt-2">
               <a href="https://www.instagram.com/sweet.memoiree/" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                Visit our Instagram @sweet.memoiree for more catalog details & latest collections.
+                {t('footer.instagram_note')}
               </a>
             </p>
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-serif text-xl font-medium mb-6">Contact Us</h4>
+            <h4 className="font-serif text-xl font-medium mb-6">{t('footer.contact')}</h4>
             <ul className="space-y-4">
               <li>
                 <a 
@@ -45,25 +48,25 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3 text-text-muted">
                 <MapPin size={18} className="mt-1 flex-shrink-0" />
-                <span>Medan, Indonesia<br/><span className="text-sm opacity-80">(Free delivery min 300k for Medan area)</span></span>
+                <span>Medan, Indonesia<br/><span className="text-sm opacity-80">({t('announcement.delivery')})</span></span>
               </li>
             </ul>
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-serif text-xl font-medium mb-6">Quick Links</h4>
+            <h4 className="font-serif text-xl font-medium mb-6">{t('footer.links')}</h4>
             <ul className="space-y-3">
-              <li><a href="#home" className="text-text-muted hover:text-accent transition-colors">Home</a></li>
-              <li><a href="#price-list" className="text-text-muted hover:text-accent transition-colors">Price List</a></li>
-              <li><a href="#gallery" className="text-text-muted hover:text-accent transition-colors">Gallery</a></li>
-              <li><a href="#testimonials" className="text-text-muted hover:text-accent transition-colors">Testimonials</a></li>
+              <li><a href="#home" className="text-text-muted hover:text-accent transition-colors">{t('nav.home')}</a></li>
+              <li><a href="#price-list" className="text-text-muted hover:text-accent transition-colors">{t('nav.pricelist')}</a></li>
+              <li><a href="#gallery" className="text-text-muted hover:text-accent transition-colors">{t('nav.gallery')}</a></li>
+              <li><a href="#testimonials" className="text-text-muted hover:text-accent transition-colors">{t('nav.testimonials')}</a></li>
             </ul>
           </div>
 
         </div>
         
         <div className="border-t border-text/10 mt-16 pt-8 text-center text-text-muted text-sm">
-          <p>&copy; {new Date().getFullYear()} Sweet Memoiree. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Sweet Memoiree. {t('footer.rights')}</p>
         </div>
       </div>
     </footer>

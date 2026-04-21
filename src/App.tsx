@@ -12,12 +12,14 @@ import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
+import PromoSection from './components/PromoSection';
 
 export default function App() {
   return (
     <div className="min-h-screen bg-bg">
       <Navbar />
       <main>
+        <PromoSection />
         <Hero />
         <About />
         <PriceList />

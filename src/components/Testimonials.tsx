@@ -1,7 +1,10 @@
 import { motion, Variants } from 'motion/react';
 import { Star } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Testimonials() {
+  const { t } = useLanguage();
+
   const headerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -71,13 +74,13 @@ export default function Testimonials() {
             variants={headerItemVariants}
             className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold block"
           >
-            Customer Love
+            {t('testimonials.badge')}
           </motion.span>
           <motion.h2 variants={headerItemVariants} className="text-4xl md:text-5xl font-serif text-text mb-4">
-            What They Say
+            {t('testimonials.title')}
           </motion.h2>
           <motion.p variants={headerItemVariants} className="text-text-muted max-w-2xl mx-auto">
-            What our wonderful clients have to say about our floral arrangements.
+            {t('testimonials.description')}
           </motion.p>
         </motion.div>
 

@@ -1,32 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
-
-const faqs = [
-  {
-    question: 'How many days in advance should I order?',
-    answer: 'For standard orders, we recommend H-1. For detailed customized items like Woody Acrylics or complex Standing Acrylics, please order at least H-2 to ensure the best craftsmanship.'
-  },
-  {
-    question: 'Do you offer same-day delivery?',
-    answer: 'Same-day delivery is possible for select ready-stock arrangements. Please contact us via WhatsApp before 12:00 PM to check availability for immediate delivery.'
-  },
-  {
-    question: 'What are your delivery areas and costs?',
-    answer: 'We are based in Medan. We offer free delivery within the Medan area for orders above 300k. For smaller orders or areas outside city limits, a small delivery fee will apply based on distance.'
-  },
-  {
-    question: 'Can I request specific flower colors or themes?',
-    answer: 'Absolutely! Most of our arrangements come with a "Free Request Flower Theme" option. You can share your preferred color palette (e.g., Pastel, Earth Tones, Moody Blue) during our WhatsApp consultation.'
-  },
-  {
-    question: 'Are the flowers real or artificial?',
-    answer: 'We use a curated mix depending on the product: Premium Silk (Artificial), Soap Flowers, and Preserved Florals. Preserved flowers are real flowers that have been treated to last for years without water.'
-  }
-];
+import { useLanguage } from '../context/LanguageContext';
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { t } = useLanguage();
+
+  const faqs = t('faq.questions');
 
   return (
     <section id="faq" className="py-24 bg-bg">
@@ -38,7 +19,7 @@ export default function FAQ() {
             viewport={{ once: true }}
             className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold block"
           >
-            Questions & Answers
+            {t('faq.badge')}
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 10 }}
@@ -47,12 +28,12 @@ export default function FAQ() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-serif text-text mb-4"
           >
-            Support & Clarity
+            {t('faq.title')}
           </motion.h2>
         </div>
 
         <div className="space-y-4">
-          {faqs.map((faq, idx) => (
+          {Array.isArray(faqs) && faqs.map((faq: any, idx: number) => (
             <div 
               key={idx}
               className="border border-[#eee] rounded-2xl overflow-hidden bg-card-bg shadow-sm"

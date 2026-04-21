@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { motion, AnimatePresence, Variants } from 'motion/react';
 import { categories, products } from '../data/products';
 import { ChevronRight, Flower2, Gift, Camera, Package, Sparkles, Heart, Palette, Info } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function PriceList() {
+  const { t } = useLanguage();
+  
   const headerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -69,13 +72,13 @@ export default function PriceList() {
             variants={headerItemVariants}
             className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold block"
           >
-            Our Collections
+            {t('pricelist.badge')}
           </motion.span>
           <motion.h2 variants={headerItemVariants} className="text-4xl md:text-5xl font-serif text-text mb-4">
-            Floral Arrangements
+            {t('pricelist.title')}
           </motion.h2>
           <motion.p variants={headerItemVariants} className="text-text-muted max-w-2xl mx-auto">
-            Discover our carefully curated selection of floral arrangements, perfect for any occasion.
+            {t('pricelist.description')}
           </motion.p>
         </motion.div>
 
@@ -130,7 +133,7 @@ export default function PriceList() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-text/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                     <span className="text-white flex items-center gap-2 font-medium">
-                      View Details <ChevronRight size={16} />
+                      {t('pricelist.viewDetails')} <ChevronRight size={16} />
                     </span>
                   </div>
                 </div>
@@ -139,7 +142,7 @@ export default function PriceList() {
                   <p className="text-sm text-text-muted mb-4">{product.size}</p>
                   <div className="flex justify-between items-center">
                     <span className="text-accent font-bold text-[13px]">
-                      From {product.options[0].price}
+                      {t('pricelist.from')} {product.options[0].price}
                     </span>
                   </div>
                 </div>
@@ -178,7 +181,7 @@ export default function PriceList() {
                 >
                   <img 
                     src={selectedProduct.image} 
-                    alt={`${selectedProduct.name} - ${selectedProduct.details}`}
+                    alt={`${selectedProduct.name} Floral Display`}
                     className={`w-full h-full object-cover transition-transform duration-500 ${isZoomed ? 'scale-150' : 'scale-100 group-hover:scale-105'}`}
                     style={{ transformOrigin: 'center center' }}
                   />
@@ -190,13 +193,14 @@ export default function PriceList() {
                   <div className="absolute bottom-4 left-4 shadow-lg rounded-lg overflow-hidden pointer-events-none">
                     <img 
                       src="/Logo2.png" 
-                      alt="Sweet Memoiree" 
+                      alt="Sweet Memoiree Official Brand Logo" 
                       className="h-12 w-auto object-contain"
                     />
                   </div>
                 </div>
                 
                 <div className="md:w-1/2 p-8 md:p-12 overflow-y-auto">
+                  {/* Dynamic Schema for search engines */}
                   <script type="application/ld+json">
                     {JSON.stringify({
                       "@context": "https://schema.org/",
@@ -219,7 +223,7 @@ export default function PriceList() {
                   
                   <div className="space-y-6 mb-8">
                     <div>
-                      <h4 className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold">Select Option</h4>
+                      <h4 className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold">{t('pricelist.selectOption')}</h4>
                       <div className="space-y-3">
                         {selectedProduct.options.map((opt, idx) => (
                           <button 
@@ -246,7 +250,7 @@ export default function PriceList() {
                     </div>
                     
                     <div>
-                      <h4 className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold">Product Summary</h4>
+                      <h4 className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold">{t('pricelist.summary')}</h4>
                       <p className="text-text-muted text-sm leading-relaxed">{selectedProduct.details}</p>
                     </div>
 
@@ -254,7 +258,7 @@ export default function PriceList() {
                       <div className="bg-bg/50 p-4 rounded-2xl border border-[#eee]">
                         <div className="flex items-center gap-2 mb-2">
                           <Flower2 size={16} className="text-accent" />
-                          <h4 className="text-[11px] uppercase tracking-[2px] text-text font-bold">Flower Components</h4>
+                          <h4 className="text-[11px] uppercase tracking-[2px] text-text font-bold">{t('pricelist.components')}</h4>
                         </div>
                         <p className="text-text-muted text-sm leading-relaxed">{(selectedProduct as any).flowers}</p>
                       </div>
@@ -264,7 +268,7 @@ export default function PriceList() {
                       <div className="bg-bg/50 p-4 rounded-2xl border border-[#eee]">
                         <div className="flex items-center gap-2 mb-2">
                           <Palette size={16} className="text-accent" />
-                          <h4 className="text-[11px] uppercase tracking-[2px] text-text font-bold">Color Palettes</h4>
+                          <h4 className="text-[11px] uppercase tracking-[2px] text-text font-bold">{t('pricelist.palettes')}</h4>
                         </div>
                         <p className="text-text-muted text-sm leading-relaxed">{(selectedProduct as any).palettes}</p>
                       </div>
@@ -274,7 +278,7 @@ export default function PriceList() {
                       <div className="bg-bg/50 p-4 rounded-2xl border border-[#eee]">
                         <div className="flex items-center gap-2 mb-2">
                           <Heart size={16} className="text-accent" />
-                          <h4 className="text-[11px] uppercase tracking-[2px] text-text font-bold">Care Instructions</h4>
+                          <h4 className="text-[11px] uppercase tracking-[2px] text-text font-bold">{t('pricelist.care')}</h4>
                         </div>
                         <p className="text-text-muted text-sm leading-relaxed">{(selectedProduct as any).care}</p>
                       </div>
@@ -283,12 +287,12 @@ export default function PriceList() {
                     <div>
                       <h4 className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold flex items-center gap-2">
                         <Info size={14} />
-                        Customization Notes
+                        {t('pricelist.customization')}
                       </h4>
                       <textarea
                         value={customization}
                         onChange={(e) => setCustomization(e.target.value)}
-                        placeholder="E.g., I want a pink theme, add a greeting card saying 'Happy Birthday'..."
+                        placeholder={t('pricelist.placeholder')}
                         className="w-full p-4 border border-[#eee] rounded-xl text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent resize-none h-24 bg-transparent text-text placeholder:text-text-muted/50"
                       />
                     </div>
@@ -300,7 +304,7 @@ export default function PriceList() {
                     rel="noopener noreferrer"
                     className="block w-full bg-accent hover:bg-accent/90 text-white text-center px-6 py-4 rounded-[40px] transition-colors font-semibold text-[15px]"
                   >
-                    Ask on WhatsApp
+                    {t('pricelist.cta')}
                   </a>
                 </div>
               </motion.div>

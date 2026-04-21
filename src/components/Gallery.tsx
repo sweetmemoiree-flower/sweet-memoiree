@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, Variants, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
 import { products } from '../data/products';
+import { useLanguage } from '../context/LanguageContext';
 
 // Helper to determine the bento grid span based on index
 const getGridSpan = (index: number) => {
@@ -20,6 +21,7 @@ const getGridSpan = (index: number) => {
 
 export default function Gallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -76,7 +78,7 @@ export default function Gallery() {
             viewport={{ once: true }}
             className="text-[11px] uppercase tracking-[2px] text-text-muted mb-3 font-bold block"
           >
-            Visual Muse
+            {t('gallery.badge')}
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 10 }}
@@ -85,7 +87,7 @@ export default function Gallery() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-serif text-text mb-4"
           >
-            Artistry in Bloom
+            {t('gallery.title')}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 10 }}
@@ -94,7 +96,7 @@ export default function Gallery() {
             viewport={{ once: true }}
             className="text-text-muted max-w-2xl mx-auto"
           >
-            A curated showcase of our favorite bespoke creations, capturing the essence of elegance and emotion.
+            {t('gallery.description')}
           </motion.p>
         </div>
 
@@ -121,7 +123,7 @@ export default function Gallery() {
               <div className="absolute inset-0 bg-gradient-to-t from-text/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6">
                 <Maximize2 size={20} className="text-white mb-2 absolute top-4 right-4" />
                 <span className="text-[10px] uppercase tracking-[1px] text-white/70 mb-1 font-bold">
-                  Collection Highlight
+                  {t('gallery.highlight')}
                 </span>
                 <h4 className="text-white font-serif text-lg leading-tight">
                   {product.name}
@@ -138,7 +140,7 @@ export default function Gallery() {
           className="mt-16 text-center space-y-8"
         >
           <p className="text-text-muted italic flex items-center justify-center gap-2">
-            Each arrangement is uniquely crafted for your special moment.
+            {t('gallery.footer')}
           </p>
 
           <div className="pt-4">
@@ -151,7 +153,7 @@ export default function Gallery() {
               <span className="bg-accent/10 p-2 rounded-full group-hover:bg-white/20 transition-colors text-accent group-hover:text-white">
                 <Maximize2 size={18} className="rotate-45" />
               </span>
-              <span>Visit our Instagram for more catalogs</span>
+              <span>{t('gallery.instagram')}</span>
             </a>
           </div>
         </motion.div>
@@ -207,7 +209,7 @@ export default function Gallery() {
                 
                 <div className="text-center text-white max-w-2xl px-4">
                   <span className="text-[11px] uppercase tracking-[2px] text-white/60 mb-2 font-bold block">
-                    {selectedIndex + 1} / {galleryItems.length} — Collection Highlight
+                    {selectedIndex + 1} / {galleryItems.length} — {t('gallery.highlight')}
                   </span>
                   <h3 className="text-3xl md:text-4xl font-serif mb-3">
                     {galleryItems[selectedIndex].name}

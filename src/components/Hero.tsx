@@ -1,6 +1,9 @@
 import { motion, Variants } from 'motion/react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -22,7 +25,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-24">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -39,12 +42,12 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          <motion.h1 variants={itemVariants} className="text-[56px] leading-[1.1] font-serif text-text font-normal mb-5">
-            Preserving your sweetest memories, <br />
-            <span className="italic">in every petal.</span>
+          <motion.h1 variants={itemVariants} className="text-[40px] md:text-[56px] leading-[1.1] font-serif text-text font-normal mb-5">
+            {t('hero.title')} <br />
+            <span className="italic">{t('hero.subtitle')}</span>
           </motion.h1>
-          <motion.p variants={itemVariants} className="text-[16px] leading-[1.6] text-text-muted mb-8 max-w-[360px] mx-auto">
-            Artisanal flower arrangements for weddings, birthdays, and the quiet moments in between. Hand-crafted in Indonesia with love and attention to detail.
+          <motion.p variants={itemVariants} className="text-[16px] leading-[1.6] text-text-muted mb-8 max-w-[420px] mx-auto">
+            {t('hero.description')}
           </motion.p>
           
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -54,13 +57,13 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="bg-accent text-white px-8 py-[18px] rounded-[40px] font-semibold text-[15px] hover:bg-accent/90 transition-colors inline-flex items-center justify-center w-full sm:w-auto"
             >
-              Ask on WhatsApp
+              {t('hero.cta')}
             </a>
             <a
               href="#price-list"
               className="bg-transparent border border-text text-text px-8 py-[18px] rounded-[40px] font-semibold text-[15px] hover:bg-text hover:text-white transition-colors inline-flex items-center justify-center w-full sm:w-auto"
             >
-              View Price List
+              {t('hero.ctaSecondary')}
             </a>
           </motion.div>
         </motion.div>

@@ -1,6 +1,9 @@
 import { motion } from 'motion/react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function About() {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="py-24 bg-bg overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,34 +35,34 @@ export default function About() {
             className="md:w-1/2 space-y-8"
           >
             <div className="space-y-4">
-              <span className="text-[11px] uppercase tracking-[2px] text-accent font-bold">The Story Behind the Petals</span>
+              <span className="text-[11px] uppercase tracking-[2px] text-accent font-bold">{t('about.badge')}</span>
               <h2 className="text-4xl md:text-5xl font-serif text-text leading-tight">
-                Preserving Your <br />
-                <span className="italic italic-font">Sweetest Memories</span>
+                {t('about.titlePart1')} <br />
+                <span className="italic italic-font">{t('about.titlePart2')}</span>
               </h2>
             </div>
             
             <div className="space-y-6 text-text-muted leading-relaxed">
               <p>
-                Founded in Medan, <strong>Sweet Memoiree</strong> was born from a simple belief: every milestone, every "I love you," and every "Congratulations" deserves to be captured in a way that lasts. 
+                {t('about.p1')}
               </p>
               <p>
-                We specialize in artisanal arrangements that blend the timeless beauty of premium florals with modern, sleek design elements like acrylic and wood. Our goal isn't just to sell flowers; it's to create a bespoke piece of art that remains a cherished keepsake in your home.
+                {t('about.p2')}
               </p>
               <p className="italic text-text font-serif">
-                "Whether it's a birthday, a graduation, or a simple surprise, we handle every stem with the care your special moment deserves."
+                {t('about.quote')}
               </p>
             </div>
 
             <div className="flex items-center gap-6 pt-4 border-t border-[#eee]">
               <div className="text-center">
                 <span className="block text-2xl font-serif text-accent font-bold">500+</span>
-                <span className="text-[10px] uppercase tracking-[1px] text-text-muted">Memories Shared</span>
+                <span className="text-[10px] uppercase tracking-[1px] text-text-muted">{t('about.stats1')}</span>
               </div>
               <div className="w-[1px] h-10 bg-[#eee]" />
               <div className="text-center">
                 <span className="block text-2xl font-serif text-accent font-bold">100%</span>
-                <span className="text-[10px] uppercase tracking-[1px] text-text-muted">Hand-Crafted</span>
+                <span className="text-[10px] uppercase tracking-[1px] text-text-muted">{t('about.stats2')}</span>
               </div>
             </div>
           </motion.div>
